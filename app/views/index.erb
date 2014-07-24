@@ -1,0 +1,30 @@
+<form action="./" method="GET">
+	<input type="text" name="zipcode">
+	<button type="submit">検索</button>
+</form>
+
+<form action="./zipcode" method="POST">
+	<input type="text" name="zipcode" placeholder="郵便番号">
+	<input type="text" name="address" placeholder="住所">
+	<button type="submit">追加</button>
+</form>
+
+<table>
+	<tr>
+		<th>郵便番号</th>
+		<th>住所</th>
+	</tr>
+
+	<% @rows.each do |row| %>
+	<tr>
+		<td><%= row['zipcode'] %></td>
+		<td><%= row['address'] %></td>
+		<td><a href="./zipcode/<%= row['zipcode'] %>">表示</a></td>
+		<td>
+			<form action="./zipcode/<%= row['zipcode']%>/delete" method="POST">
+				<input type="submit" value="削除">
+			</form>
+		</td>
+	</tr>
+	<% end %>
+</table>
